@@ -1,26 +1,27 @@
 // Enhanced loading screen with progress simulation
-window.addEventListener('load', function() {
-    const loadingScreen = document.getElementById('loadingScreen');
-    const progressBar = document.getElementById('progressBar');
-    // Simulate loading progress
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            // Hide loading screen after a short delay
-            setTimeout(() => {
-                loadingScreen.classList.add('hidden');
-            }, 500);
-        }
-        progressBar.style.width = progress + '%';
-    }, 200);
-    // Initialize dynamic content
-    renderRooms();
-    initRoomSlider();
-    initTourSlider();
+document.addEventListener('DOMContentLoaded', () => {
+  const loadingScreen = document.getElementById('loadingScreen');
+  const progressBar = document.getElementById('progressBar');
+  let progress = 0;
+
+  const interval = setInterval(() => {
+    progress += Math.random() * 15;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+      }, 500);
+    }
+    progressBar.style.width = progress + '%';
+  }, 200);
+
+  // Initialize site components earlier for speed
+  renderRooms();
+  initRoomSlider();
+  initTourSlider();
 });
+
 
 // Image lazy loading
 const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -90,7 +91,7 @@ function closeMobileMenu() {
     const backdrop = document.getElementById('menuBackdrop');
     if (backdrop) {
         backdrop.style.opacity = '0';
-        setTimeout(() => backdrop.remove(), 300);
+        (() => backdrop.remove(), 300);
     }
 }
 
@@ -997,6 +998,7 @@ window.addEventListener("scroll", () => {
 
   scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
 })();
+
 
 
 

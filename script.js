@@ -112,7 +112,7 @@ const roomData = [
         features: ['Privacy', 'Style', 'Serenity'],
         price: '1,400/night',
         images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'],
-        window.location.href = "./room/doubleroom.html";
+        window.location.href = "./JLC-new/room/doubleroom.html";
     },
     {
         id: 'triple-room',
@@ -998,6 +998,7 @@ window.addEventListener("scroll", () => {
 
   scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
 })();
+
 
 
 

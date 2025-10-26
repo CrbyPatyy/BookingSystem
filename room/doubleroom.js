@@ -28,3 +28,18 @@ function goToImage(index) {
     currentImageIndex = index;
     showImage(currentImageIndex);
 }
+
+function toggleRoomDetails() {
+    var card = document.getElementById('roomDetailsCard');
+    var overlay = document.getElementById('modalOverlay');
+    
+    if (card.classList.contains('show')) {
+        card.classList.remove('show');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+    } else {
+        card.classList.add('show');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}

@@ -19,23 +19,23 @@
 
         <div class="nav-arrows">
             <div class="arrow-btn" onclick="changeImage(-1)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
             </div>
             <div class="arrow-btn" onclick="changeImage(1)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
             </div>
         </div>
 
-        <div class="gallery-nav">
+       <!-- <div class="gallery-nav">
             <div class="nav-dot active" onclick="goToImage(0)"></div>
             <div class="nav-dot" onclick="goToImage(1)"></div>
             <div class="nav-dot" onclick="goToImage(2)"></div>
             <div class="nav-dot" onclick="goToImage(3)"></div>
-        </div>
+        </div>-->
 
         <div class="content-wrapper">
             <div class="main-content">
@@ -66,17 +66,19 @@
                     <button class="btn-primary" onclick="window.location.href='../Booking/booking.html'">
                         <span>Book This Suite</span>
                     </button>
-                    <button class="btn-secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                        </svg>
-                        <span>Virtual Tour</span>
+                    <button class="btn-secondary" onclick="toggleRoomDetails()">
+                        <span>Room Details</span>
                     </button>
                 </div>
             </div>
 
-            <div class="info-card">
+            <div class="info-card" id="roomDetailsCard">
+                <button class="close-modal" onclick="toggleRoomDetails()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
                 <div class="card-header">
                     <div class="price-display">
                         <span class="price-large">₱1400</span>
@@ -117,7 +119,7 @@
                             <span>Room Features</span>
                         </div>
                         <div class="feature-items">
-                            <div class="feature-tag">Doubke-size bed</div>
+                            <div class="feature-tag">Double-size bed</div>
                             <div class="feature-tag">Rainfall shower</div>
                             <div class="feature-tag">Mini bar</div>
                             <div class="feature-tag">24/7 service</div>
@@ -128,16 +130,8 @@
         </div>
     </div>
 
-    <div class="notification" id="notification">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span>Booking request submitted!</span>
-    </div>
+    <div class="modal-overlay" id="modalOverlay" onclick="toggleRoomDetails()"></div>
 
     <script src="../room/doubleroom.js"></script>
 </body>
-
 </html>
-
-

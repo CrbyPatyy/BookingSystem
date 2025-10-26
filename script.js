@@ -37,7 +37,7 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 });
 document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 
-// Navigation scroll effect
+/*Navigation scroll effect
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
@@ -45,7 +45,7 @@ window.addEventListener('scroll', function() {
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+});*/
 
 // Enhanced Mobile Menu with Better Interactions
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -110,7 +110,8 @@ const roomData = [
         description: 'Experience cozy comfort in our Double Room — perfect for couples who value privacy, style, and serenity.',
         features: ['Privacy', 'Style', 'Serenity'],
         price: '1,400/night',
-        images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80']
+        images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'],
+        link: '../room/doubleroom.html'
     },
     {
         id: 'triple-room',
@@ -118,13 +119,14 @@ const roomData = [
         description: 'Share unforgettable moments in our Triple Room, designed for space, comfort, and connection.',
         features: ['Space', 'Comfort', 'Connection'],
         price: '2,100/night',
-        images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80']
+        images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'],
+        link: '../Booking/booking.html'
     },
     {
         id: 'barkada-room',
         title: 'Barkada Room',
-        description: 'Stay together and have fun in our Barkada Room. Built for friendship, energy, and laughter.',
-        features: ['Friendship', 'Energy', 'Laughter'],
+        description: 'Stay together and have fun in our Barkada Room. Built for Love, energy, and laughter.',
+        features: ['Love', 'Energy', 'Laughter'],
         price: '5,600/night',
         images: ['https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80']
     },
@@ -159,7 +161,7 @@ function renderRooms() {
                     `).join('')}
                 </div>
                 <div class="room-price">${room.price}</div>
-                <a href="#" class="btn btn-dark">View Details</a>
+                <a href="${room.link}" class="btn btn-dark">View Details</a>
             </div>
         </div>
     `).join('');
@@ -940,3 +942,61 @@ window.addEventListener('DOMContentLoaded', () => {
         contactSection.style.willChange = 'auto';
     }
 });
+
+// === HERO PARALLAX ON SCROLL ===
+window.addEventListener("scroll", () => {
+  const bg = document.querySelector(".hero-bg");
+  if (!bg || window.innerWidth <= 768) return;
+
+  const scrollY = window.scrollY;
+  const parallax = scrollY * 0.3; // scroll intensity
+  bg.style.transform = `translateY(${parallax}px) scale(1.1)`; // zoom + scroll motion
+});
+
+// === UNIVERSAL SMART HIDE-ON-SCROLL NAVBAR ===
+(() => {
+  const navbar = document.getElementById("navbar");
+  if (!navbar) return;
+
+  // Detect scroll container
+  let scrollContainer = window;
+  const possible = document.querySelector("main, .main, .page, .wrapper, .content");
+  if (possible && possible.scrollHeight > window.innerHeight) {
+    scrollContainer = possible;
+  }
+
+  let lastScroll = 0;
+  let isHidden = false;
+
+  const handleScroll = () => {
+    const currentScroll =
+      scrollContainer === window
+        ? window.scrollY || document.documentElement.scrollTop
+        : scrollContainer.scrollTop;
+
+    // Always show near the top
+    if (currentScroll < 120) {
+      navbar.classList.remove("hidden");
+      isHidden = false;
+      lastScroll = currentScroll;
+      return;
+    }
+
+    if (currentScroll > lastScroll && !isHidden) {
+      // Scrolling down → hide
+      navbar.classList.add("hidden");
+      isHidden = true;
+    } else if (currentScroll < lastScroll && isHidden) {
+      // Scrolling up → show
+      navbar.classList.remove("hidden");
+      isHidden = false;
+    }
+
+    lastScroll = currentScroll;
+  };
+
+  scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+})();
+
+
+

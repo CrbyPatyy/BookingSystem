@@ -1,27 +1,26 @@
 // Enhanced loading screen with progress simulation
-document.addEventListener('DOMContentLoaded', () => {
-  const loadingScreen = document.getElementById('loadingScreen');
-  const progressBar = document.getElementById('progressBar');
-  let progress = 0;
-
-  const interval = setInterval(() => {
-    progress += Math.random() * 15;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-      setTimeout(() => {
-        loadingScreen.classList.add('hidden');
-      }, 500);
-    }
-    progressBar.style.width = progress + '%';
-  }, 200);
-
-  // Initialize site components earlier for speed
-  renderRooms();
-  initRoomSlider();
-  initTourSlider();
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    const progressBar = document.getElementById('progressBar');
+    // Simulate loading progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            // Hide loading screen after a short delay
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 500);
+        }
+        progressBar.style.width = progress + '%';
+    }, 200);
+    // Initialize dynamic content
+    renderRooms();
+    initRoomSlider();
+    initTourSlider();
 });
-
 
 // Image lazy loading
 const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -91,7 +90,7 @@ function closeMobileMenu() {
     const backdrop = document.getElementById('menuBackdrop');
     if (backdrop) {
         backdrop.style.opacity = '0';
-        (() => backdrop.remove(), 300);
+        setTimeout(() => backdrop.remove(), 300);
     }
 }
 
@@ -112,7 +111,7 @@ const roomData = [
         features: ['Privacy', 'Style', 'Serenity'],
         price: '1,400/night',
         images: ['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'],
-        link: '../Booking/booking.html'
+        link: 'room/doubleroom.html'
     },
     {
         id: 'triple-room',
@@ -998,11 +997,6 @@ window.addEventListener("scroll", () => {
 
   scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
 })();
-
-
-
-
-
 
 
 

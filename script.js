@@ -120,7 +120,7 @@ const roomData = [
         features: ['Space', 'Comfort', 'Connection'],
         price: '2,100/night',
         images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'],
-        link: 'room/doubleroom.html'
+        link: '../Booking/booking.html'
     },
     {
         id: 'barkada-room',
@@ -793,33 +793,82 @@ const testimonialData = [
     }
 ];
 
+// Create all testimonial cards on page load
+function initTestimonials() {
+    const slider = document.querySelector('.testimonial-slider');
+    if (!slider) return;
+    
+    const nav = slider.querySelector('.testimonial-nav');
+    
+    // Clear existing cards but keep nav
+    const existingCards = slider.querySelectorAll('.testimonial-card');
+    existingCards.forEach(card => card.remove());
+    
+    // Create all cards at once
+    testimonialData.forEach((data, index) => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        if (index === 0) card.classList.add('active');
+        
+        card.innerHTML = `
+            <div class="testimonial-content">
+                "${data.content}"
+            </div>
+            <div class="testimonial-author">
+                <div class="author-avatar">
+                    <img data-src="${data.avatar}" alt="${data.name}" loading="lazy" class="image-loading">
+                </div>
+                <div class="author-info">
+                    <h4>${data.name}</h4>
+                    <p>${data.from}</p>
+                </div>
+            </div>
+        `;
+        
+        // Insert before nav
+        slider.insertBefore(card, nav);
+        
+        // Observe image for lazy loading
+        const img = card.querySelector('img[data-src]');
+        if (img) imageObserver.observe(img);
+    });
+}
+
 function showTestimonial(index) {
-    const testimonialCard = document.querySelector('.testimonial-card');
-    const data = testimonialData[index];
-    testimonialCard.innerHTML = `
-        <div class="testimonial-content">
-            "${data.content}"
-        </div>
-        <div class="testimonial-author">
-            <div class="author-avatar">
-                <img data-src="${data.avatar}" alt="${data.name}" loading="lazy" class="image-loading">
-            </div>
-            <div class="author-info">
-                <h4>${data.name}</h4>
-                <p>${data.from}</p>
-            </div>
-        </div>
-    `;
-    // Observe the new image for lazy loading
-    const newImg = testimonialCard.querySelector('img[data-src]');
-    if (newImg) {
-        imageObserver.observe(newImg);
-    }
+    const cards = document.querySelectorAll('.testimonial-card');
+    
+    // Toggle active class on all cards
+    cards.forEach((card, i) => {
+        if (i === index) {
+            card.classList.add('active');
+        } else {
+            card.classList.remove('active');
+        }
+    });
+    
     // Update active dot
     testimonialDots.forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
 }
+
+// Initialize testimonials when DOM is ready
+if (document.querySelector('.testimonial-slider')) {
+    initTestimonials();
+}
+
+testimonialDots.forEach((dot, index) => {
+    dot.addEventListener('click', function() {
+        currentTestimonial = index;
+        showTestimonial(currentTestimonial);
+    });
+});
+
+// Auto-rotate testimonials
+setInterval(() => {
+    currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
+    showTestimonial(currentTestimonial);
+}, 5000);
 
 testimonialDots.forEach((dot, index) => {
     dot.addEventListener('click', function() {
@@ -997,8 +1046,6 @@ window.addEventListener("scroll", () => {
 
   scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
 })();
-
-
 
 
 

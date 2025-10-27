@@ -1256,27 +1256,36 @@ section {
 .testimonials {
     background-color: var(--seafoam);
 }
+
 .testimonial-slider {
     max-width: 800px;
     margin: 0 auto;
     position: relative;
+    min-height: 450px;
 }
+
 .testimonial-card {
     background-color: var(--white);
     border-radius: 16px;
     padding: 48px;
     box-shadow: var(--shadow-subtle);
     text-align: center;
-    margin: 0 20px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
     border: 1px solid var(--border-light);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-.testimonial-card.visible {
+
+.testimonial-card.active {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
 }
+
 .testimonial-content {
     font-style: italic;
     margin-bottom: 24px;

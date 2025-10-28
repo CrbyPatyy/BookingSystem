@@ -1,4 +1,4 @@
-:root {
+    :root {
     /* Refined Color Palette - More Sophisticated & Minimal */
     --deep-ocean: #0A4A5A;       /* Deeper, richer ocean blue */
     --vibrant-teal: #2D9D92;     /* Softer, more elegant teal */
@@ -458,7 +458,7 @@ p {
 
 /* headline - modern scale, confident tone */
 .hero h1 {
-  font-size: 50px
+  font-size: 300px
   font-weight: 700;
   text-align: center;
   letter-spacing: -0.6px;
@@ -2622,6 +2622,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

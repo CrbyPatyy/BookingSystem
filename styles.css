@@ -452,7 +452,7 @@ p {
   color: var(--white);
   max-width: 650px;
   animation: fadeUp 1.2s ease forwards;
-  text-align: left;
+  text-align: center;
   text-shadow: 0 3px 12px rgba(0,0,0,0.4);
 }
 
@@ -2620,4 +2620,5 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 

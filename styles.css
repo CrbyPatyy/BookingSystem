@@ -458,7 +458,8 @@ p {
 
 /* headline - modern scale, confident tone */
 .hero h1 {
-  font-size: 300px
+  font-size: clamp(4rem, 8vw, 7rem);
+
   font-weight: 700;
   text-align: center;
   letter-spacing: -0.6px;
@@ -2622,6 +2623,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

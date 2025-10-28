@@ -460,6 +460,7 @@ p {
 .hero h1 {
   font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: 700;
+  text-align: center;
   letter-spacing: -0.6px;
   color: var(--white);
   margin-bottom: 1rem;
@@ -470,6 +471,7 @@ p {
 /* supporting text - softer rhythm */
 .hero p {
   font-size: 1.2rem;
+  text-align: center;
   line-height: 1.9;
   color: rgba(255,255,255,0.9);
   max-width: 480px;
@@ -2618,3 +2620,4 @@ img.loaded {
     border-radius: 40px;
   }
 }
+

@@ -458,16 +458,14 @@ p {
 
 /* headline - modern scale, confident tone */
 .hero h1 {
-  font-size: clamp(4rem, 8vw, 7rem);
-
-  font-weight: 700;
   text-align: center;
-  letter-spacing: -0.6px;
-  color: var(--white);
-  margin-bottom: 1rem;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 1.2;
   opacity: 0;
-  animation: fadeUp 1s ease 0.3s forwards;
-  padding: 0; 
+  margin: 0;
+  padding: 0;
+  color: var(--white);
 
 }
 
@@ -2623,6 +2621,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

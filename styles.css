@@ -460,7 +460,9 @@ p {
 
   font-size: clamp(4rem, 8vw, 7rem);
   font-weight: 700;
+    line-height: 1.2;
   text-align: center;
+    max-width: 1000px;
   margin: 0 auto;
   color: var(--white);
 
@@ -2619,6 +2621,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

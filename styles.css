@@ -412,7 +412,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 10vw;
+  padding-left: 0;
   background: none;
   overflow: hidden;
   --scroll-offset: 0px; /* for parallax */
@@ -2620,6 +2620,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

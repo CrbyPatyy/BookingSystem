@@ -469,7 +469,7 @@ p {
 
 /* supporting text - softer rhythm */
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   text-align: center;
   line-height: 1.9;
   color: rgba(255,255,255,0.9);
@@ -2619,6 +2619,7 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 
 
 

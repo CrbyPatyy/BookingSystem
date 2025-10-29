@@ -51,7 +51,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#sanctuary" class="active">Sanctuary</a></li>
                 <li><a href="#amenities">Amenities</a></li>
-                <li><a href="#experiences">Adventure</a></li>
+                <li><a href="#experiences">Adventure</a></li>                
                 <li><a href="#activities">Activities</a></li>
                 <li><a href="#dining">Meal</a></li>
                 <li><a href="#sustainability">Sustainability</a></li>
@@ -65,13 +65,13 @@
     <section class="hero" id="main-content">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <h1 style="text-align:center;">Your Adventure Begins at LJC El Nido Inn</h1>
-        <p style="text-align:center;">Check in and let your journey begin where comfort meets adventure. 🧳✨</p>
+        <h1>Your Adventure <br> Begins at LJC El Nido Inn</h1>
+        <p>Check in and let your journey begin where comfort meets adventure. 🧳✨</p>
         <a href="Booking/booking.html" class="btn">Book Now</a>
     </div>
 </section>
     <!-- Island Sanctuary Section -->
-    <section id="sanctuary" class="sanctuary"
+    <section id="sanctuary" class="sanctuary">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Modern Classic with Native Accommodations</span>
@@ -106,68 +106,113 @@
             <p3><strong>Check In. Head Out. Start the Adventure.</strong></p3>
         </div>
     </div>
-    <!-- Room Amenities Section -->
+
+   <!-- Thing we Offer -->
     <section id="amenities" class="amenities">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Premium Comfort</span>
-                <h2>Room Amenities</h2>
+                <h2>Things We Offer</h2>
                 <p>Every room at LJC El Nido Inn is thoughtfully designed with your comfort in mind, featuring premium amenities for a truly relaxing stay.</p>
             </div>
-            <div class="amenities-section">
-                <div class="amenities-grid">
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-coffee"></i>
+            <div class="amenities-interactive-section">
+                <!-- Left Side - Amenity List -->
+                <div class="amenities-list">
+    <div class="amenity-list-item active" data-amenity="breakfast">
+        <div class="amenity-list-icon">
+            <i class="fas fa-coffee"></i>
+        </div>
+        <h4>Breakfast,Lunch & Dinner</h4>
+    </div>
+    <div class="amenity-list-item" data-amenity="airport">
+        <div class="amenity-list-icon">
+            <i class="fas fa-plane"></i>
+        </div>
+        <h4>Airport Pick-Up</h4>
+    </div>
+    <div class="amenity-list-item" data-amenity="meals">
+        <div class="amenity-list-icon">
+            <i class="fas fa-utensils"></i>
+        </div>
+        <h4>Journey (Tours)</h4>
+    </div>
+    <div class="amenity-list-item" data-amenity="frontdesk">
+        <div class="amenity-list-icon">
+            <i class="fas fa-concierge-bell"></i>
+        </div>
+        <h4>24hrs Front Desk</h4>
+    </div>
+</div>
+                
+                
+                <!-- Right Side - Amenity Details -->
+                <div class="amenities-display">
+                    <!-- Breakfast -->
+                    <div class="amenity-detail active" id="breakfast">
+                        <div class="amenity-detail-image">
+                            <img data-src="https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Filipino Breakfast" loading="lazy" class="image-loading">
                         </div>
-                        <div class="amenity-content">
-                            <h4>Complimentary Daily Breakfast</h4>
-                            <p>Start your day with a delicious Filipino breakfast featuring local ingredients</p>
+                        <div class="amenity-detail-content">
+                            <h3>Complimentary Breakfast</h3>
+                            <p>Start your day with a delicious Filipino breakfast featuring local ingredients. Enjoy traditional dishes like tapsilog, fresh tropical fruits, and locally-sourced coffee. Our breakfast is included with every stay and served daily from 7:00 AM to 10:00 AM.</p>
+                            <ul class="amenity-features-list">
+                                <li><i class="fas fa-check"></i> Traditional Filipino dishes</li>
+                                <li><i class="fas fa-check"></i> Fresh tropical fruits</li>
+                                <li><i class="fas fa-check"></i> Locally-sourced coffee & tea</li>
+                                <li><i class="fas fa-check"></i> Vegetarian options available</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-snowflake"></i>
+                    
+                    <!-- Airport Pick-Up -->
+                    <div class="amenity-detail" id="airport">
+                        <div class="amenity-detail-image">
+                            <img data-src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Airport Pick-Up Service" loading="lazy" class="image-loading">
                         </div>
-                        <div class="amenity-content">
-                            <h4>Air Conditioned Rooms</h4>
-                            <p>Stay cool and comfortable with individually controlled air conditioning</p>
-                        </div>
-                    </div>
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-shower"></i>
-                        </div>
-                        <div class="amenity-content">
-                            <h4>Private Bathroom</h4>
-                            <p>Enjoy your own private bathroom with hot & cold shower and premium toiletries</p>
-                        </div>
-                    </div>
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-wifi"></i>
-                        </div>
-                        <div class="amenity-content">
-                            <h4>High-Speed WiFi</h4>
-                            <p>Stay connected with complimentary high-speed internet access</p>
+                        <div class="amenity-detail-content">
+                            <h3>Airport Pick-Up Service</h3>
+                            <p>Enjoy hassle-free arrival with our airport transfer service from El Nido Airport. Our friendly driver will meet you at the airport and ensure a comfortable journey to our inn. Book this service when making your reservation.</p>
+                            <ul class="amenity-features-list">
+                                <li><i class="fas fa-check"></i> Meet & greet at airport</li>
+                                <li><i class="fas fa-check"></i> Comfortable air-conditioned vehicle</li>
+                                <li><i class="fas fa-check"></i> Experienced local driver</li>
+                                <li><i class="fas fa-check"></i> Available 24/7</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-tv"></i>
+                    
+                    <!-- Tours -->
+
+                    <div class="amenity-detail" id="meals">
+                        <div class="amenity-detail-image">
+                            <img data-src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lunch and Dinner" loading="lazy" class="image-loading">
                         </div>
-                        <div class="amenity-content">
-                            <h4>Netflix Entertainment</h4>
-                            <p>Relax with your favorite shows and movies on our Smart TVs with Netflix</p>
+                        <div class="amenity-detail-content">
+                            <h3>Journey Tours</h3>
+                            <p>Explore the stunning islands and lagoons of El Nido with our curated tour packages. From Tour A to Tour D, we offer comprehensive island hopping experiences with snorkeling, kayaking, and beach relaxation. Let us handle all the arrangements while you enjoy paradise.</p>
+                            <ul class="amenity-features-list">
+                                <li><i class="fas fa-check"></i> Tours A, B, C, D available</li>
+                                <li><i class="fas fa-check"></i> Snorkeling equipment included</li>
+                                <li><i class="fas fa-check"></i> Lunch & drinks provided</li>
+                                <li><i class="fas fa-check"></i> Professional tour guides</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="amenity-item">
-                        <div class="amenity-icon">
-                            <i class="fas fa-concierge-bell"></i>
+                    
+                    <!-- 24hrs Front Desk -->
+                    <div class="amenity-detail" id="frontdesk">
+                        <div class="amenity-detail-image">
+                            <img data-src="https://images.unsplash.com/photo-1573567199032-50a155ba6de1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870" alt="Filipino Breakfast" loading="lazy" class="image-loading">
                         </div>
-                        <div class="amenity-content">
-                            <h4>Daily Housekeeping</h4>
-                            <p>Enjoy daily housekeeping service to keep your room pristine</p>
+                        <div class="amenity-detail-content">
+                            <h3>24-Hour Front Desk</h3>
+                            <p>Our dedicated front desk team is available around the clock to assist with your needs. Whether you need tour bookings, restaurant recommendations, or any assistance during your stay, we're here to help make your El Nido experience unforgettable.</p>
+                            <ul class="amenity-features-list">
+                                <li><i class="fas fa-check"></i> 24/7 assistance available</li>
+                                <li><i class="fas fa-check"></i> Tour booking & arrangements</li>
+                                <li><i class="fas fa-check"></i> Local recommendations</li>
+                                <li><i class="fas fa-check"></i> Concierge services</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -175,172 +220,47 @@
         </div>
     </section>
     <!-- El Nido Experiences Section -->
-    <section id="experiences" class="experiences">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Island Adventures</span>
-                <h2>El Nido Experiences</h2>
-                <p>Discover the 47 islands and lagoons of El Nido with our interactive island explorer and curated tours.</p>
-            </div>
-            <!-- Tour Explorer Slider -->
-            <div class="tours-slider-container">
-                <div class="tours-slider" id="toursSlider">
-                    <!-- Tour A - Lagoons & Beaches -->
-                    <div class="explorer-container">
-                        <div class="explorer-header">
-                            <h3>🏝️ Tour A – Lagoons & Beaches</h3>
-                            <div class="tide-info">
-                                <div class="tide-indicator"></div>
-                                <span>High Tide: 2:15 PM</span>
-                            </div>
-                        </div>
-                        <div class="explorer-content">
-                            <div class="map-container">
-                                <div class="map-islands">
-                                    <div class="island" style="top: 30%; left: 40%;" data-island="big-lagoon" tabindex="0"></div>
-                                    <div class="island" style="top: 50%; left: 60%;" data-island="small-lagoon" tabindex="0"></div>
-                                    <div class="island" style="top: 70%; left: 30%;" data-island="secret-lagoon" tabindex="0"></div>
-                                    <div class="island" style="top: 40%; left: 70%;" data-island="shimizu-island" tabindex="0"></div>
-                                    <div class="island" style="top: 60%; left: 50%;" data-island="seven-commando" tabindex="0"></div>
-                                </div>
-                            </div>
-                            <div class="island-info">
-                                <h4>Big Lagoon</h4>
-                                <div class="island-description">
-                                    <p>Enter a majestic lagoon surrounded by towering limestone cliffs. The calm, turquoise waters are perfect for kayaking and swimming.</p>
-                                </div>
-                                <div class="island-features">
-                                    <div class="island-feature">Kayaking</div>
-                                    <div class="island-feature">Swimming</div>
-                                    <div class="island-feature">Photography</div>
-                                </div>
-                                <p><strong>Best Time to Visit:</strong> Morning (9 AM - 12 PM)</p>
-                                <p><strong>Tour Route:</strong> Tour A</p>
-                                <a href="#" class="btn btn-dark">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tour B - Caves & Islands -->
-                    <div class="explorer-container">
-                        <div class="explorer-header">
-                            <h3>🌅 Tour B – Caves & Islands</h3>
-                            <div class="tide-info">
-                                <div class="tide-indicator"></div>
-                                <span>Known for caves, snorkeling, and unique rock formations</span>
-                            </div>
-                        </div>
-                        <div class="explorer-content">
-                            <div class="map-container">
-                                <div class="map-islands">
-                                    <div class="island" style="top: 25%; left: 35%;" data-island="snake-island" tabindex="0"></div>
-                                    <div class="island" style="top: 45%; left: 65%;" data-island="pinagbuyutan" tabindex="0"></div>
-                                    <div class="island" style="top: 65%; left: 25%;" data-island="cudugnon-cave" tabindex="0"></div>
-                                    <div class="island" style="top: 35%; left: 75%;" data-island="cathedral-cave" tabindex="0"></div>
-                                    <div class="island" style="top: 75%; left: 55%;" data-island="entalula-beach" tabindex="0"></div>
-                                </div>
-                            </div>
-                            <div class="island-info">
-                                <h4>Snake Island</h4>
-                                <div class="island-description">
-                                    <p>A long sandbar connecting two islands, creating a unique natural phenomenon perfect for walking and photography.</p>
-                                </div>
-                                <div class="island-features">
-                                    <div class="island-feature">Sandbar</div>
-                                    <div class="island-feature">Walking</div>
-                                    <div class="island-feature">Photography</div>
-                                </div>
-                                <p><strong>Best Time to Visit:</strong> Low tide</p>
-                                <p><strong>Tour Route:</strong> Tour B</p>
-                                <a href="#" class="btn btn-dark">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tour C - Hidden Beaches & Shrines -->
-                    <div class="explorer-container">
-                        <div class="explorer-header">
-                            <h3>🗿 Tour C – Hidden Beaches & Shrines</h3>
-                            <div class="tide-info">
-                                <div class="tide-indicator"></div>
-                                <span>Famous for dramatic cliffs, secret beaches, and snorkeling</span>
-                            </div>
-                        </div>
-                        <div class="explorer-content">
-                            <div class="map-container">
-                                <div class="map-islands">
-                                    <div class="island" style="top: 20%; left: 45%;" data-island="helicopter-island" tabindex="0"></div>
-                                    <div class="island" style="top: 50%; left: 35%;" data-island="matinloc-shrine" tabindex="0"></div>
-                                    <div class="island" style="top: 70%; left: 65%;" data-island="secret-beach" tabindex="0"></div>
-                                    <div class="island" style="top: 40%; left: 25%;" data-island="hidden-beach" tabindex="0"></div>
-                                    <div class="island" style="top: 60%; left: 75%;" data-island="star-beach" tabindex="0"></div>
-                                </div>
-                            </div>
-                            <div class="island-info">
-                                <h4>Helicopter Island</h4>
-                                <div class="island-description">
-                                    <p>Shaped like a helicopter, this island offers excellent snorkeling opportunities with vibrant coral reefs and diverse marine life.</p>
-                                </div>
-                                <div class="island-features">
-                                    <div class="island-feature">Snorkeling</div>
-                                    <div class="island-feature">Unique Shape</div>
-                                    <div class="island-feature">Marine Life</div>
-                                </div>
-                                <p><strong>Best Time to Visit:</strong> Morning to Afternoon</p>
-                                <p><strong>Tour Route:</strong> Tour C</p>
-                                <a href="#" class="btn btn-dark">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tour D - Relaxed & Less Crowded -->
-                    <div class="explorer-container">
-                        <div class="explorer-header">
-                            <h3>🌤 Tour D – Relaxed & Less Crowded</h3>
-                            <div class="tide-info">
-                                <div class="tide-indicator"></div>
-                                <span>Focuses on quiet lagoons and beautiful beaches near Cadlao Island</span>
-                            </div>
-                        </div>
-                        <div class="explorer-content">
-                            <div class="map-container">
-                                <div class="map-islands">
-                                    <div class="island" style="top: 30%; left: 40%;" data-island="small-lagoon" tabindex="0"></div>
-                                    <div class="island" style="top: 50%; left: 60%;" data-island="cadlao-lagoon" tabindex="0"></div>
-                                    <div class="island" style="top: 70%; left: 30%;" data-island="paradise-beach" tabindex="0"></div>
-                                    <div class="island" style="top: 40%; left: 70%;" data-island="pasandigan-beach" tabindex="0"></div>
-                                    <div class="island" style="top: 60%; left: 50%;" data-island="natnat-beach" tabindex="0"></div>
-                                </div>
-                            </div>
-                            <div class="island-info">
-                                <h4>Small Lagoon</h4>
-                                <div class="island-description">
-                                    <p>Perfect for kayaking and swimming in calm turquoise water, surrounded by majestic limestone cliffs.</p>
-                                </div>
-                                <div class="island-features">
-                                    <div class="island-feature">Kayaking</div>
-                                    <div class="island-feature">Swimming</div>
-                                    <div class="island-feature">Calm Waters</div>
-                                </div>
-                                <p><strong>Best Time to Visit:</strong> Morning (9 AM - 12 PM)</p>
-                                <p><strong>Tour Route:</strong> Tour D</p>
-                                <a href="#" class="btn btn-dark">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tour Slider Controls -->
-                <div class="tour-slider-controls">
-                    <button class="tour-slider-btn prev-tour-btn" id="prevTourBtn" aria-label="Previous tour">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="tour-slider-dots" id="tourSliderDots">
-                        <!-- Dots will be dynamically generated -->
-                    </div>
-                    <button class="tour-slider-btn next-tour-btn" id="nextTourBtn" aria-label="Next tour">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- El Nido Experiences Section -->
+<section id="experiences" class="experiences">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Island Adventures</span>
+      <h2>El Nido Experiences</h2>
+      <p>Discover the 47 islands and lagoons of El Nido with our curated tours.</p>
+    </div>
+
+    <!-- Mini Nav Bar INSIDE the section -->
+    <div class="tour-mini-nav">
+      <button class="tour-tab active" data-tour="tour-a">Tour A</button>
+      <button class="tour-tab" data-tour="tour-b">Tour B</button>
+      <button class="tour-tab" data-tour="tour-c">Tour C</button>
+      <button class="tour-tab" data-tour="tour-d">Tour D</button>
+    </div>
+
+    <!-- Tour Explorer Layout -->
+    <div class="tour-explorer">
+      <!-- Map Area (Left) -->
+      <div class="map-area">
+        <div class="map-islands" id="mapIslands">
+          <!-- Islands will be injected by JS -->
         </div>
-    </section>
+      </div>
+
+      <!-- Details Panel (Right) -->
+      <div class="details-panel" id="detailsPanel">
+        <!-- Content will be populated by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Island Modal -->
+<div class="island-modal" id="islandModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
     <!-- Activities Section -->
     <section id="activities" class="activities">
         <div class="container">
@@ -437,7 +357,7 @@
                         <!-- Dish 1 -->
                         <div class="dish-card">
                             <div class="dish-image">
-                                <img data-src="https://baycatch.ph/cdn/shop/files/kinilaw-na-tanigue-sku.jpg?v=1698653261&width=600" alt="Kinilaw na Tanigue - Spanish mackerel ceviche" loading="lazy" class="image-loading">
+                                <img data-src="https://kusinasecrets.com/wp-content/uploads/2025/04/u3317447599_top_down_view_of_Homemade_Kinilaw_na_Tanigue_Fili_ffb2f868-9d56-44b7-8a46-23414d1b1f50_3-500x500.jpg" alt="Kinilaw na Tanigue - Spanish mackerel ceviche" loading="lazy" class="image-loading">
                             </div>
                             <h4>Kinilaw na Tanigue</h4>
                             <p>Fresh Spanish mackerel ceviche with coconut vinegar, ginger, and chili</p>
@@ -676,17 +596,6 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

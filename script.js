@@ -1,5 +1,4 @@
 // Enhanced loading screen with progress simulation
-// Enhanced loading screen with progress simulation
 window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loadingScreen');
     const progressBar = document.getElementById('progressBar');
@@ -22,6 +21,7 @@ window.addEventListener('load', function() {
     initRoomSlider();
     // initTourSlider(); ← REMOVED — replaced below
     initAmenitiesInteraction();
+    initCityTours();
 });
 
 // Image lazy loading
@@ -540,7 +540,7 @@ function updateDetails(islandId) {
         </div>
         <p><strong>Best Time:</strong> ${data.bestTime}</p>
         <p><strong>Tour:</strong> ${data.tourRoute}</p>
-        <a href="#" class="btn btn-dark">Learn More</a>
+        
     `;
 }
 
@@ -898,8 +898,7 @@ function initAmenitiesInteraction() {
             }
         });
     });
-
-
+}
 
 // Tour Slider Functionality
 function initTourSlider() {
@@ -1046,154 +1045,6 @@ function initTourSlider() {
 const islands = document.querySelectorAll('.island');
 const islandInfo = document.querySelector('.island-info');
 
-// Sample island data
-const islandData = {
-    // Tour A destinations
-    'big-lagoon': {
-        name: 'Big Lagoon',
-        description: 'Enter a majestic lagoon surrounded by towering limestone cliffs. The calm, turquoise waters are perfect for kayaking and swimming.',
-        features: ['Kayaking', 'Swimming', 'Photography'],
-        bestTime: 'Morning (9 AM - 12 PM)',
-        tourRoute: 'Tour A'
-    },
-    'small-lagoon': {
-        name: 'Small Lagoon',
-        description: 'Navigate through a narrow opening to discover this hidden gem. The serene waters and dramatic rock formations create a magical atmosphere.',
-        features: ['Snorkeling', 'Kayaking', 'Privacy'],
-        bestTime: 'Afternoon (1 PM - 4 PM)',
-        tourRoute: 'Tour A'
-    },
-    'secret-lagoon': {
-        name: 'Secret Lagoon',
-        description: 'Find your way through a small crevice in the limestone cliffs to access this secluded lagoon, a true hidden paradise.',
-        features: ['Secluded', 'Swimming', 'Exploration'],
-        bestTime: 'Midday (11 AM - 2 PM)',
-        tourRoute: 'Tour A'
-    },
-    'shimizu-island': {
-        name: 'Shimizu Island',
-        description: 'Renowned for its vibrant coral gardens and diverse marine life, perfect for snorkeling enthusiasts.',
-        features: ['Snorkeling', 'Marine Life', 'Coral Gardens'],
-        bestTime: 'Morning (9 AM - 12 PM)',
-        tourRoute: 'Tour A'
-    },
-    'seven-commando': {
-        name: 'Seven Commando Beach',
-        description: 'Relax on this pristine white sand beach with crystal clear waters, perfect for swimming and sunbathing.',
-        features: ['Beach Relaxation', 'Swimming', 'Sunbathing'],
-        bestTime: 'Afternoon (2 PM - 5 PM)',
-        tourRoute: 'Tour A'
-    },
-    // Tour B destinations
-    'snake-island': {
-        name: 'Snake Island',
-        description: 'A long sandbar connecting two islands, creating a unique natural phenomenon perfect for walking and photography during low tide.',
-        features: ['Sandbar', 'Walking', 'Photography'],
-        bestTime: 'Low tide',
-        tourRoute: 'Tour B'
-    },
-    'pinagbuyutan': {
-        name: 'Pinagbuyutan Island',
-        description: 'Postcard-perfect limestone island with powdery white sand beaches and crystal clear waters.',
-        features: ['Limestone Formations', 'White Sand', 'Photography'],
-        bestTime: 'Morning to Afternoon',
-        tourRoute: 'Tour B'
-    },
-    'cudugnon-cave': {
-        name: 'Cudugnon Cave',
-        description: 'Small cave used by locals during the war; offers historical significance and scenic views.',
-        features: ['Historical', 'Cave Exploration', 'Scenic'],
-        bestTime: 'Daytime',
-        tourRoute: 'Tour B'
-    },
-    'cathedral-cave': {
-        name: 'Cathedral Cave',
-        description: 'Accessible by boat; known for its tall cathedral-like rock interior with impressive acoustics.',
-        features: ['Cathedral-like', 'Boat Access', 'Impressive Interior'],
-        bestTime: 'Morning',
-        tourRoute: 'Tour B'
-    },
-    'entalula-beach': {
-        name: 'Entalula Beach',
-        description: 'Beautiful beach for swimming and relaxing with pristine white sand and turquoise waters.',
-        features: ['Swimming', 'Relaxing', 'White Sand'],
-        bestTime: 'All Day',
-        tourRoute: 'Tour B'
-    },
-    // Tour C destinations
-    'helicopter-island': {
-        name: 'Helicopter Island',
-        description: 'Shaped like a helicopter, this island offers excellent snorkeling opportunities with vibrant coral reefs and diverse marine life.',
-        features: ['Snorkeling', 'Unique Shape', 'Marine Life'],
-        bestTime: 'Morning to Afternoon',
-        tourRoute: 'Tour C'
-    },
-    'matinloc-shrine': {
-        name: 'Matinloc Shrine',
-        description: 'Historical site with viewpoints and old structures offering panoramic views of the surrounding islands.',
-        features: ['Historical', 'Viewpoints', 'Structures'],
-        bestTime: 'Morning',
-        tourRoute: 'Tour C'
-    },
-    'secret-beach': {
-        name: 'Secret Beach',
-        description: 'Accessible through a small opening in the rock; one of El Nido\'s highlights with hidden beauty.',
-        features: ['Hidden', 'Secluded', 'Swimming'],
-        bestTime: 'Low to Mid Tide',
-        tourRoute: 'Tour C'
-    },
-    'hidden-beach': {
-        name: 'Hidden Beach',
-        description: 'Enclosed by cliffs, this beach offers calm and stunning waters perfect for swimming.',
-        features: ['Cliff-enclosed', 'Calm Waters', 'Stunning'],
-        bestTime: 'All Day',
-        tourRoute: 'Tour C'
-    },
-    'star-beach': {
-        name: 'Star Beach',
-        description: 'Good for lunch and snorkeling with abundant marine life and comfortable facilities.',
-        features: ['Lunch Spot', 'Snorkeling', 'Facilities'],
-        bestTime: 'Lunch Time',
-        tourRoute: 'Tour C'
-    },
-    // Tour D destinations
-    'small-lagoon': {
-        name: 'Small Lagoon',
-        description: 'Perfect for kayaking and swimming in calm turquoise water, surrounded by majestic limestone cliffs.',
-        features: ['Kayaking', 'Swimming', 'Calm Waters'],
-        bestTime: 'Morning (9 AM - 12 PM)',
-        tourRoute: 'Tour D'
-    },
-    'cadlao-lagoon': {
-        name: 'Cadlao Lagoon',
-        description: 'Surrounded by cliffs; peaceful and photogenic location perfect for relaxation.',
-        features: ['Peaceful', 'Photogenic', 'Cliff-surrounded'],
-        bestTime: 'Morning',
-        tourRoute: 'Tour D'
-    },
-    'paradise-beach': {
-        name: 'Paradise Beach',
-        description: 'Secluded beach great for swimming and enjoying the pristine natural surroundings.',
-        features: ['Secluded', 'Swimming', 'Pristine'],
-        bestTime: 'All Day',
-        tourRoute: 'Tour D'
-    },
-    'pasandigan-beach': {
-        name: 'Pasandigan Beach',
-        description: 'Quiet and scenic picnic spot perfect for enjoying a meal surrounded by natural beauty.',
-        features: ['Quiet', 'Scenic', 'Picnic Spot'],
-        bestTime: 'Lunch Time',
-        tourRoute: 'Tour D'
-    },
-    'natnat-beach': {
-        name: 'Natnat Beach',
-        description: 'White sand and clear waters make this beach perfect for swimming and sunbathing.',
-        features: ['White Sand', 'Clear Waters', 'Swimming'],
-        bestTime: 'All Day',
-        tourRoute: 'Tour D'
-    }
-};
-
 // Set initial island
 let activeIsland = 'big-lagoon';
 function updateIslandInfo(islandId) {
@@ -1256,426 +1107,181 @@ islands.forEach(island => {
 // Initialize with first island
 updateIslandInfo(activeIsland);
 
-// Contact form validation
-const contactForm = document.getElementById('contactForm');
-const inputs = contactForm.querySelectorAll('input, textarea');
-inputs.forEach(input => {
-    input.addEventListener('blur', validateField);
-    input.addEventListener('input', clearError);
-    // Enhanced form interactions for mobile
-    input.addEventListener('focus', function() {
-        this.parentElement.classList.add('focused');
-    });
-    input.addEventListener('blur', function() {
-        this.parentElement.classList.remove('focused');
-    });
-});
-
-function validateField(e) {
-    const field = e.target;
-    const value = field.value.trim();
-    if (field.id === 'email' && value && !isValidEmail(value)) {
-        showError(field, 'Please enter a valid email address');
-    } else if (field.required && !value) {
-        showError(field, 'This field is required');
-    } else {
-        clearError(field);
-    }
-}
-
-function showError(field, message) {
-    clearError(field);
-    field.classList.add('error');
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    field.parentNode.appendChild(errorDiv);
-}
-
-function clearError(field) {
-    field.classList.remove('error');
-    const errorMessage = field.parentNode.querySelector('.error-message');
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-}
-
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-// Contact form submission
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Validate all fields
-    let isValid = true;
-    inputs.forEach(input => {
-        validateField({target: input});
-        if (input.classList.contains('error')) {
-            isValid = false;
-        }
-    });
-    if (!isValid) return;
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    // In a real implementation, you would send this data to a server
-    // For now, we'll just show an alert
-    alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
-    // Reset the form
-    contactForm.reset();
-});
-
-// Testimonial slider functionality
-const testimonialDots = document.querySelectorAll('.testimonial-dot');
-let currentTestimonial = 0;
-
-// Sample testimonial data
-const testimonialData = [
-    {
-        content: "I recently had the pleasure of visiting the beautiful El Nido, Palawan again—this time with my whole family—and I couldn't be happier with the Juls Inn/LJC El Nido Inn and the tour package I chose. From the moment we arrived, everything was well-organized, relaxing, and full of breathtaking moments. They even let us cook for free! Most especially, Ms. Aiza was very hands-on. Thank you, Ms. Aiza and the staff of LJC—you were all super accommodating!",
-        name: "Angel Viejo and Fam",
-        from: "",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-    },
-    {
-        content: "I had enormous stay in LJC El Nido Inn. The staffs were friendly, approachable and attentive. The rooms were tidy and comfortable. I would certainly recommend staying here.",
-        name: "Elizalde Es",
-        from: "Teachers of Maco Davao De Oro",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-    },
-    {
-        content: "Hello ma'am, good evening. Naka uli na mi Pantukan po, karon rajud ko naka message kay nabusy pud pag abot diri hehe. Thank you kaayo ma'am sa pag accomodate sa amoa and pag tubag sa tanan mga queries namo hehe. Nag enjoy jud kaayo mi and happy kaayo si daddy sa iyang birthday po. Thank you kay smooth ra kaayo among vacation from pick up sa airport to accomodation namo to the tours po. Would definitely recommend you sa mga kaila namo and if mabalik mi kay icontact ra ka namo dayon hehe. Thank you kaayo usab po. 🤎✨",
-        name: "Caballero Family",
-        from: "Pantukan, Davao De Oro",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
-    }
-];
-
-// Create all testimonial cards on page load
-function initTestimonials() {
-    const slider = document.querySelector('.testimonial-slider');
-    if (!slider) return;
+// City Tours - COMPLETE FIX
+function initCityTours() {
+    const tourBtns = document.querySelectorAll('.tour-nav-btn');
+    const tourContents = document.querySelectorAll('.tour-content');
     
-    const nav = slider.querySelector('.testimonial-nav');
+    console.log('🔍 City Tours Init:');
+    console.log('  - Buttons found:', tourBtns.length);
+    console.log('  - Contents found:', tourContents.length);
     
-    // Clear existing cards but keep nav
-    const existingCards = slider.querySelectorAll('.testimonial-card');
-    existingCards.forEach(card => card.remove());
-    
-    // Create all cards at once
-    testimonialData.forEach((data, index) => {
-        const card = document.createElement('div');
-        card.className = 'testimonial-card';
-        if (index === 0) card.classList.add('active');
-        
-        card.innerHTML = `
-            <div class="testimonial-content">
-                "${data.content}"
-            </div>
-            <div class="testimonial-author">
-                <div class="author-avatar">
-                    <img data-src="${data.avatar}" alt="${data.name}" loading="lazy" class="image-loading">
-                </div>
-                <div class="author-info">
-                    <h4>${data.name}</h4>
-                    <p>${data.from}</p>
-                </div>
-            </div>
-        `;
-        
-        // Insert before nav
-        slider.insertBefore(card, nav);
-        
-        // Observe image for lazy loading
-        const img = card.querySelector('img[data-src]');
-        if (img) imageObserver.observe(img);
-    });
-}
-
-function showTestimonial(index) {
-    const cards = document.querySelectorAll('.testimonial-card');
-    
-    // Toggle active class on all cards
-    cards.forEach((card, i) => {
-        if (i === index) {
-            card.classList.add('active');
-        } else {
-            card.classList.remove('active');
-        }
-    });
-    
-    // Update active dot
-    testimonialDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-}
-
-// Initialize testimonials when DOM is ready
-if (document.querySelector('.testimonial-slider')) {
-    initTestimonials();
-}
-
-testimonialDots.forEach((dot, index) => {
-    dot.addEventListener('click', function() {
-        currentTestimonial = index;
-        showTestimonial(currentTestimonial);
-    });
-});
-
-// Auto-rotate testimonials
-setInterval(() => {
-    currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
-    showTestimonial(currentTestimonial);
-}, 5000);
-
-testimonialDots.forEach((dot, index) => {
-    dot.addEventListener('click', function() {
-        currentTestimonial = index;
-        showTestimonial(currentTestimonial);
-    });
-});
-
-// Auto-rotate testimonials
-setInterval(() => {
-    currentTestimonial = (currentTestimonial + 1) % testimonialData.length;
-    showTestimonial(currentTestimonial);
-}, 5000);
-
-// Scroll animation using Intersection Observer
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // ✅ Prevent infinite triggering
-        }
-    });
-}, observerOptions);
-
-// Observe elements for scroll animations
-document.querySelectorAll('.section-header, .room-card, .amenities-section, .amenity-item, .explorer-container, .activity-card, .dining-section, .dish-card, .sustainable-card, .contact-section, .contact-detail, .social-link, .form-group, .testimonial-card, section').forEach(el => {
-    observer.observe(el);
-});
-
-// Enhanced Touch Interactions for Mobile
-document.addEventListener('DOMContentLoaded', function() {
-    // Add touch feedback to interactive elements
-    const touchElements = document.querySelectorAll('.btn, .room-card, .activity-card, .amenity-item, .dish-card, .social-link');
-    touchElements.forEach(el => {
-        el.classList.add('touch-feedback');
-        // Prevent context menu on long press
-        el.addEventListener('contextmenu', (e) => e.preventDefault());
-    });
-
-    // Enhanced testimonial slider for touch devices
-    const testimonialSlider = document.querySelector('.testimonial-slider');
-    if (testimonialSlider) {
-        let isScrolling;
-        testimonialSlider.addEventListener('scroll', function() {
-            // Clear our timeout throughout the scroll
-            window.clearTimeout(isScrolling);
-            // Set a timeout to run after scrolling ends
-            isScrolling = setTimeout(function() {
-                // Snap to closest testimonial
-                const scrollLeft = testimonialSlider.scrollLeft;
-                const cardWidth = testimonialSlider.querySelector('.testimonial-card').offsetWidth + 20;
-                const activeIndex = Math.round(scrollLeft / cardWidth);
-                testimonialSlider.scrollTo({
-                    left: activeIndex * cardWidth,
-                    behavior: 'smooth'
-                });
-                // Update dots
-                testimonialDots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === activeIndex);
-                });
-            }, 66);
-        });
-    }
-});
-
-// Handle window resize
-window.addEventListener('resize', function() {
-    // Close mobile menu if window is resized to desktop size
-    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-        closeMobileMenu();
-    }
-});
-
-// Add ripple effect to buttons
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        this.appendChild(ripple);
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-});
-
-// Language selector functionality
-const languageSelector = document.getElementById('language');
-languageSelector.addEventListener('change', function() {
-    // In a real implementation, this would change the site language
-    alert(`Language changed to ${this.options[this.selectedIndex].text}. In a real implementation, this would translate the entire site.`);
-});
-
-// Performance improvements for mobile
-if (window.innerWidth <= 768) {
-    // Reduce animation complexity on mobile
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (reducedMotion.matches) {
-        // Disable or simplify animations
-        document.documentElement.style.setProperty('--animation-duration', '0.1s');
-    }
-}
-// ---- FIX: Prevent Contact Us section from jittering or moving on its own ----
-window.addEventListener('DOMContentLoaded', () => {
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-        contactSection.style.position = 'relative';
-        contactSection.style.overflow = 'hidden';
-        contactSection.style.willChange = 'auto';
-    }
-});
-
-// === HERO PARALLAX ON SCROLL ===
-window.addEventListener("scroll", () => {
-  const bg = document.querySelector(".hero-bg");
-  if (!bg || window.innerWidth <= 768) return;
-
-  const scrollY = window.scrollY;
-  const parallax = scrollY * 0.3; // scroll intensity
-  bg.style.transform = `translateY(${parallax}px) scale(1.1)`; // zoom + scroll motion
-});
-
-// === UNIVERSAL SMART HIDE-ON-SCROLL NAVBAR ===
-(() => {
-  const navbar = document.getElementById("navbar");
-  if (!navbar) return;
-
-  // Detect scroll container
-  let scrollContainer = window;
-  const possible = document.querySelector("main, .main, .page, .wrapper, .content");
-  if (possible && possible.scrollHeight > window.innerHeight) {
-    scrollContainer = possible;
-  }
-
-  let lastScroll = 0;
-  let isHidden = false;
-
-  const handleScroll = () => {
-    const currentScroll =
-      scrollContainer === window
-        ? window.scrollY || document.documentElement.scrollTop
-        : scrollContainer.scrollTop;
-
-    // Always show near the top
-    if (currentScroll < 120) {
-      navbar.classList.remove("hidden");
-      isHidden = false;
-      lastScroll = currentScroll;
-      return;
-    }
-
-    if (currentScroll > lastScroll && !isHidden) {
-      // Scrolling down → hide
-      navbar.classList.add("hidden");
-      isHidden = true;
-    } else if (currentScroll < lastScroll && isHidden) {
-      // Scrolling up → show
-      navbar.classList.remove("hidden");
-      isHidden = false;
-    }
-
-    lastScroll = currentScroll;
-  };
-
-  scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
-})();
-
-// Interactive Amenities Section
-function initAmenitiesInteraction() {
-    const listItems = document.querySelectorAll('.amenity-list-item');
-    const details = document.querySelectorAll('.amenity-detail');
-    
-    console.log('Amenity items found:', listItems.length); // Debug
-    console.log('Amenity details found:', details.length); // Debug
-    
-    if (!listItems.length || !details.length) {
-        console.error('Amenities not found!');
+    if (tourBtns.length === 0 || tourContents.length === 0) {
+        console.error('❌ City tours elements not found!');
         return;
     }
     
-    listItems.forEach((item, index) => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            const amenityId = this.getAttribute('data-amenity');
-            console.log('Clicked amenity:', amenityId); // Debug
+    tourContents.forEach((content, contentIndex) => {
+        const slider = content.querySelector('.tour-slider');
+        const slides = content.querySelectorAll('.tour-slide');
+        const prevBtn = content.querySelector('.prev');
+        const nextBtn = content.querySelector('.next');
+        const dotsContainer = content.querySelector('.tour-slider-dots');
+        
+        console.log(`📍 Tour ${contentIndex}:`, {
+            slider: !!slider,
+            slides: slides.length,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn,
+            dots: !!dotsContainer
+        });
+        
+        if (!slider || slides.length === 0) {
+            console.warn(`⚠️ Skipping tour ${contentIndex} - missing elements`);
+            return;
+        }
+        
+        let currentSlide = 0;
+        
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('tour-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToSlide(index);
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            if (dotsContainer && dotsContainer.children[currentSlide]) {
+                dotsContainer.children[currentSlide].classList.remove('active');
+            }
             
-            // Remove active class from all items
-            listItems.forEach(li => li.classList.remove('active'));
-            details.forEach(detail => detail.classList.remove('active'));
+            currentSlide = index;
             
-            // Add active class to clicked item
-            this.classList.add('active');
+            slides[currentSlide].classList.add('active');
+            if (dotsContainer && dotsContainer.children[currentSlide]) {
+                dotsContainer.children[currentSlide].classList.add('active');
+            }
             
-            // Show corresponding detail
-            const targetDetail = document.getElementById(amenityId);
-            console.log('Target detail found:', targetDetail); // Debug
-            
-            if (targetDetail) {
-                targetDetail.classList.add('active');
-                
-                // Lazy load image if not loaded
-                const img = targetDetail.querySelector('img[data-src]');
-                if (img && img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    img.classList.remove('image-loading');
-                    img.removeAttribute('data-src');
+            const img = slides[currentSlide].querySelector('img[data-src]');
+            if (img && img.dataset.src) {
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+                img.classList.remove('image-loading');
+                img.removeAttribute('data-src');
+            }
+        }
+        
+        function nextSlide() {
+            const next = (currentSlide + 1) % slides.length;
+            goToSlide(next);
+        }
+        
+        function prevSlide() {
+            const prev = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(prev);
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                prevSlide();
+            });
+            prevBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                prevSlide();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nextSlide();
+            });
+            nextBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nextSlide();
+            });
+        }
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
                 }
-            } else {
-                console.error('Target detail not found for:', amenityId);
+            }
+        }, { passive: true });
+        
+        let autoSlide = setInterval(nextSlide, 5000);
+        slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        slider.addEventListener('mouseleave', () => {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(nextSlide, 5000);
+        });
+    });
+    
+    tourBtns.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const tourId = btn.dataset.tour;
+            if (!tourId) {
+                console.error('❌ Button missing data-tour attribute!');
+                return;
+            }
+            
+            tourBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            let foundContent = false;
+            tourContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tourId) {
+                    content.classList.add('active');
+                    foundContent = true;
+                    setTimeout(() => {
+                        const firstImg = content.querySelector('.tour-slide.active img[data-src]');
+                        if (firstImg && firstImg.dataset.src) {
+                            firstImg.src = firstImg.dataset.src;
+                            firstImg.classList.add('loaded');
+                            firstImg.classList.remove('image-loading');
+                            firstImg.removeAttribute('data-src');
+                        }
+                    }, 50);
+                }
+            });
+            
+            if (!foundContent) {
+                console.error(`❌ No content found with id: ${tourId}`);
             }
         });
         
-        // Also add keyboard support
-        item.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            btn.click();
         });
     });
-}
-
-// Initialize amenities interaction - Try multiple times to ensure DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAmenitiesInteraction);
-} else {
-    initAmenitiesInteraction();
-}
-
-// Fallback initialization after everything loads
-window.addEventListener('load', function() {
-    // Re-initialize if elements weren't found before
-    const listItems = document.querySelectorAll('.amenity-list-item');
-    if (listItems.length === 0) {
-        setTimeout(initAmenitiesInteraction, 500);
-    }
-});
+    
+    console.log('✅ City tours initialized successfully!');
 }

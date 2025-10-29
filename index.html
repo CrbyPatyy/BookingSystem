@@ -49,12 +49,12 @@
                 <span class="sr-only">Menu</span>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#sanctuary" class="active">Rooms</a></li>
+                <li><a href="#sanctuary" class="active">Sanctuary</a></li>
                 <li><a href="#amenities">We Offer</a></li>
                 <li><a href="#experiences">Adventure</a></li>                
                 <li><a href="#activities">Activities</a></li>
-                <li><a href="#dining">City Tour</a></li>
-                <li><a href="#sustainability">Things we learn</a></li>
+                <li><a href="#city-tours">City Tours</a></li>
+                <li><a href="#sustainability">Sustainability</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
                
@@ -66,7 +66,7 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
         <h1>Your Adventure <br> Begins at LJC El Nido Inn</h1>
-        <p>Check in and let your journey begin where comfort meets adventure. </p>
+        <p>Check in and let your journey begin where comfort meets adventure.</p>
         <a href="Booking/booking.html" class="btn">Book Now</a>
     </div>
 </section>
@@ -102,7 +102,7 @@
     <div class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1587102492933-8fa2f2f230f6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1032');">
         <div class="parallax-overlay"></div>
         <div class="parallax-content">
-            <h2>Experience The Paradise Like Never Before</h2>
+            <h2>Experience Paradise Like Never Before</h2>
             <p3><strong>Check In. Head Out. Start the Adventure.</strong></p3>
         </div>
     </div>
@@ -111,9 +111,9 @@
     <section id="amenities" class="amenities">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Services</span>
+                <span class="section-subtitle">Premium Comfort</span>
                 <h2>Things We Offer</h2>
-                <p>No stress, just adventure—airport pick-up, tours, meals, and 24/7 front desk, all ready when you are.</p>
+                <p>Every room at LJC El Nido Inn is thoughtfully designed with your comfort in mind, featuring premium amenities for a truly relaxing stay.</p>
             </div>
             <div class="amenities-interactive-section">
                 <!-- Left Side - Amenity List -->
@@ -224,9 +224,9 @@
 <section id="experiences" class="experiences">
   <div class="container">
     <div class="section-header">
-      <span class="section-subtitle">Island Adventures In </span>
-      <h2>El Nido </h2>
-      <p>where every tour is a new chapter in your journey</p>
+      <span class="section-subtitle">Island Adventures</span>
+      <h2>El Nido Experiences</h2>
+      <p>Discover the 47 islands and lagoons of El Nido with our curated tours.</p>
     </div>
 
     <!-- Mini Nav Bar INSIDE the section -->
@@ -340,44 +340,123 @@
         </div>
     </section>
     <!-- Local Table Section -->
-    <section id="dining" class="dining">
+    <section id="city-tours" class="city-tours">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Culinary Delights</span>
-                <h2>Local Table</h2>
-                <p>Farm-to-table dining experience highlighting fresh seafood and local Palawan ingredients.</p>
+                <span class="section-subtitle">Explore Puerto Princesa</span>
+                <h2>City Tours</h2>
+                <p>Discover the natural wonders and attractions of Puerto Princesa City.</p>
             </div>
-            <div class="dining-section">
-                <div class="dining-hero">
-                    <h3>Authentic Filipino Flavors</h3>
+            
+            <!-- Tour Navigation -->
+            <div class="tour-navigation">
+                <button class="tour-nav-btn active" data-tour="bakers-hill">Baker's Hill</button>
+                <button class="tour-nav-btn" data-tour="crocodile-farm">Crocodile Farm</button>
+                <button class="tour-nav-btn" data-tour="underground-river">Underground River</button>
+            </div>
+            
+            <!-- Tour Content -->
+            <div class="city-tour-section">
+                <!-- Baker's Hill -->
+                <div class="tour-content active" id="bakers-hill">
+                    <div class="tour-images">
+                        <div class="tour-slider">
+                            <div class="tour-slide active">
+                                <img data-src="images/Bakers1.jpg" alt="Baker's Hill Garden" loading="lazy" class="image-loading">
+                            </div>
+                            <div class="tour-slide">
+                                <img data-src="images/Bakers2.jpg" alt="Baker's Hill Landscape" loading="lazy" class="image-loading">
+                            </div>
+                            <div class="tour-slide">
+                                <img data-src="images/Bakers3.jpg" alt="Baker's Hill Pastries" loading="lazy" class="image-loading">
+                            </div>
+                        </div>
+                        <button class="tour-slider-btn prev" aria-label="Previous image">‹</button>
+                        <button class="tour-slider-btn next" aria-label="Next image">›</button>
+                        <div class="tour-slider-dots"></div>
+                    </div>
+                    <div class="tour-details">
+                        <h3>Baker's Hill</h3>
+                        <p>A charming theme park and bakery nestled on a hilltop, Baker's Hill offers beautiful gardens, whimsical statues, and breathtaking views of Puerto Princesa. Famous for its freshly baked goods including hopia and cashew cookies, this attraction combines nature, art, and delicious treats.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <ul>
+                                <li>Scenic gardens and landscapes</li>
+                                <li>Delicious freshly baked pastries</li>
+                                <li>Photo opportunities with colorful statues</li>
+                                <li>Panoramic city views</li>
+                            </ul>
+                        </div>
+                        <a href="Booking/booking.html" class="btn btn-dark">Book This Tour</a>
+                    </div>
                 </div>
-                <div class="dining-content">
-                    <p>Our culinary philosophy is simple: source the freshest ingredients from local fishermen and farmers, and let the natural flavors shine. Our chefs combine traditional Filipino recipes with contemporary techniques to create unforgettable dining experiences.</p>
-                    <div class="dish-grid">
-                        <!-- Dish 1 -->
-                        <div class="dish-card">
-                            <div class="dish-image">
-                                <img data-src="https://kusinasecrets.com/wp-content/uploads/2025/04/u3317447599_top_down_view_of_Homemade_Kinilaw_na_Tanigue_Fili_ffb2f868-9d56-44b7-8a46-23414d1b1f50_3-500x500.jpg" alt="Kinilaw na Tanigue - Spanish mackerel ceviche" loading="lazy" class="image-loading">
+                
+                <!-- Crocodile Farm -->
+                <div class="tour-content" id="crocodile-farm">
+                    <div class="tour-images">
+                        <div class="tour-slider">
+                            <div class="tour-slide active">
+                                <img data-src="images/crocs1.jpg" alt="Crocodile Farm" loading="lazy" class="image-loading">
                             </div>
-                            <h4>Kinilaw na Tanigue</h4>
-                            <p>Fresh Spanish mackerel ceviche with coconut vinegar, ginger, and chili</p>
-                        </div>
-                        <!-- Dish 2 -->
-                        <div class="dish-card">
-                            <div class="dish-image">
-                                <img data-src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Chicken Inasal - Grilled chicken marinated in calamansi" loading="lazy" class="image-loading">
+                            <div class="tour-slide">
+                                <img data-src="images/crocs2.jpg" alt="Crocodile Conservation" loading="lazy" class="image-loading">
                             </div>
-                            <h4>Chicken Inasal</h4>
-                            <p>Grilled chicken marinated in calamansi, garlic, and annatto</p>
-                        </div>
-                        <!-- Dish 3 -->
-                        <div class="dish-card">
-                            <div class="dish-image">
-                                <img data-src="https://www.cookmunitybyajinomoto.com/wp-content/uploads/2021/07/ADOBONG-PUSIT-scaled.jpeg" alt="Adobong Pusit - Squid adobo" loading="lazy" class="image-loading">
+                            <div class="tour-slide">
+                                <img data-src="images/crocs3.jpg" alt="Wildlife Sanctuary" loading="lazy" class="image-loading">
                             </div>
-                            <h4>Adobong Pusit</h4>
-                            <p>Squid adobo with soy sauce, vinegar, and garlic</p>
                         </div>
+                        <button class="tour-slider-btn prev" aria-label="Previous image">‹</button>
+                        <button class="tour-slider-btn next" aria-label="Next image">›</button>
+                        <div class="tour-slider-dots"></div>
+                    </div>
+                    <div class="tour-details">
+                        <h3>Crocodile Farm</h3>
+                        <p>The Palawan Wildlife Rescue and Conservation Center is home to numerous saltwater crocodiles and other endemic wildlife. This educational facility focuses on conservation efforts while allowing visitors to observe these magnificent creatures up close in a safe environment.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <ul>
+                                <li>See crocodiles of various sizes and ages</li>
+                                <li>Learn about conservation efforts</li>
+                                <li>Observe other native wildlife species</li>
+                                <li>Educational guided tours available</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="btn btn-dark">Book This Tour</a>
+                    </div>
+                </div>
+                
+                <!-- Underground River -->
+                <div class="tour-content" id="underground-river">
+                    <div class="tour-images">
+                        <div class="tour-slider">
+                            <div class="tour-slide active">
+                                <img data-src="images/under1.jpg" alt="Underground River Cave" loading="lazy" class="image-loading">
+                            </div>
+                            <div class="tour-slide">
+                                <img data-src="images/under2.jpg" alt="Underground River Tour" loading="lazy" class="image-loading">
+                            </div>
+                            <div class="tour-slide">
+                                <img data-src="images/under2.jpg" alt="Underground River Entrance" loading="lazy" class="image-loading">
+                            </div>
+                        </div>
+                        <button class="tour-slider-btn prev" aria-label="Previous image">‹</button>
+                        <button class="tour-slider-btn next" aria-label="Next image">›</button>
+                        <div class="tour-slider-dots"></div>
+                    </div>
+                    <div class="tour-details">
+                        <h3>Puerto Princesa Underground River</h3>
+                        <p>A UNESCO World Heritage Site and one of the New7Wonders of Nature, the Puerto Princesa Underground River features a spectacular limestone karst landscape with an 8.2km navigable underground river. Paddle through the cave system and marvel at stunning rock formations.</p>
+                        <div class="tour-highlights">
+                            <h4>Highlights:</h4>
+                            <ul>
+                                <li>UNESCO World Heritage Site</li>
+                                <li>One of the New7Wonders of Nature</li>
+                                <li>8.2km underground river system</li>
+                                <li>Spectacular stalactites and stalagmites</li>
+                                <li>Rich biodiversity and wildlife</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="btn btn-dark">Book This Tour</a>
                     </div>
                 </div>
             </div>
@@ -596,9 +675,6 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
 
 
 

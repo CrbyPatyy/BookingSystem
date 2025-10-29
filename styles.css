@@ -1711,7 +1711,7 @@ section {
   
   .details-panel {
     padding: 15px;
-    height: auto;
+    max-height: 150px;
   }
   
   .details-panel h4 {
@@ -3306,4 +3306,5 @@ img.loaded {
     border-radius: 40px;
   }
 }
+
 

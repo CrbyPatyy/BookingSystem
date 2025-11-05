@@ -59,16 +59,15 @@
                     </div>
                     <input type="hidden" id="guestsInput" name="guests" value="2">
                 </div>
+                <!-- Room Number Selection -->
                 <div class="form-group">
-                    <label for="roomType"><i class="fas fa-bed"></i> Room Type</label>
-                    <select id="roomType" name="roomType" class="form-control">
-                        <option value="">Select room type</option>
-                        <option value="standard">Standard - ₱120/night</option>
-                        <option value="deluxe" selected>Deluxe - ₱180/night</option>
-                        <option value="suite">Suite - ₱280/night</option>
-                        <option value="family">Family - ₱220/night</option>
+                    <label for="roomNumber"><i class="fas fa-bed"></i> Select Room</label>
+                    <select id="roomNumber" name="roomNumber" class="form-control" required>
+                        <option value="">Select check-in and check-out dates first</option>
                     </select>
+                    <input type="hidden" id="roomType" name="roomType">
                 </div>
+                
                 <div class="form-actions">
                     <button type="button" class="button" id="nextStep1">
                         <div class="outline"></div>
@@ -100,6 +99,7 @@
                     </button>
                 </div>
             </div>
+
             <!-- Step 2: Guest Details -->
             <div class="form-section" id="step2">
                 <div class="form-row">
@@ -183,6 +183,7 @@
                     </button>
                 </div>
             </div>
+
             <!-- Step 3: Confirmation -->
             <div class="form-section" id="step3">
                 <div class="summary-section">
@@ -282,6 +283,7 @@
                     </button>
                 </div>
             </div>
+
             <!-- Step 4: Payment -->
             <div class="form-section" id="step4">
                 <div class="summary-section">
@@ -406,6 +408,8 @@
                     </button>
                 </div>
             </div>
+            <input type="hidden" id="nightsHidden" name="nights">
+            <input type="hidden" id="totalAmountHidden" name="totalAmount">
         </form>
     </div>
     <script src="booking.js"></script>

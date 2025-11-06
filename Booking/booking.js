@@ -4,9 +4,11 @@ const stepIndicators = document.querySelectorAll('.step');
 const nextStep1 = document.getElementById('nextStep1');
 const nextStep2 = document.getElementById('nextStep2');
 const nextStep3 = document.getElementById('nextStep3');
+const nextStep4 = document.getElementById('nextStep4');
 const backStep2 = document.getElementById('backStep2');
 const backStep3 = document.getElementById('backStep3');
 const backStep4 = document.getElementById('backStep4');
+const backStep5 = document.getElementById('backStep5');
 const confirmBooking = document.getElementById('confirmBooking');
 const guestCount = document.getElementById('guestCount');
 const guestsInput = document.getElementById('guestsInput');
@@ -19,12 +21,23 @@ const summaryGuests = document.getElementById('summaryGuests');
 const summaryRoom = document.getElementById('summaryRoom');
 const summaryName = document.getElementById('summaryName');
 const summaryTotal = document.getElementById('summaryTotal');
+const summaryMeals = document.getElementById('summaryMeals');
+const summaryTours = document.getElementById('summaryTours');
+const summaryPickup = document.getElementById('summaryPickup');
+const summaryPickupTime = document.getElementById('summaryPickupTime');
+const summaryPickupTimeItem = document.getElementById('summaryPickupTimeItem');
 const totalAmount = document.getElementById('totalAmount');
 const paymentTotalAmount = document.getElementById('paymentTotalAmount');
 const checkinInput = document.getElementById('checkin');
 const checkoutInput = document.getElementById('checkout');
 const paymentOptions = document.querySelectorAll('.payment-option');
 const paymentMethodInput = document.getElementById('paymentMethod');
+const mealsSelect = document.getElementById('meals');
+const toursSelect = document.getElementById('tours');
+const pickupSelect = document.getElementById('pickup');
+const pickupTimeGroup = document.getElementById('pickupTimeGroup');
+const pickupTimeInput = document.getElementById('pickupTime');
+
 let currentStep = 1;
 let guestCountValue = 2;
 const today = new Date();
@@ -33,13 +46,16 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 checkinInput.min = today.toISOString().split('T')[0];
 checkoutInput.min = tomorrow.toISOString().split('T')[0];
 
+// Initialize guest count
 function updateGuestCount() {
     guestCount.textContent = guestCountValue + (guestCountValue === 1 ? ' Guest' : ' Guests');
     guestsInput.value = guestCountValue;
     decreaseGuests.disabled = guestCountValue <= 1;
     increaseGuests.disabled = guestCountValue >= 10;
+    checkRoomAvailability();
 }
 
+// Guest count controls
 decreaseGuests.addEventListener('click', () => {
     if (guestCountValue > 1) {
         guestCountValue--;
@@ -54,6 +70,7 @@ increaseGuests.addEventListener('click', () => {
     }
 });
 
+// Step navigation
 function showStep(step) {
     document.querySelectorAll('.form-section').forEach(section => {
         section.classList.remove('active');
@@ -63,12 +80,13 @@ function showStep(step) {
         indicator.classList.toggle('active', parseInt(indicator.dataset.step) === step);
     });
     currentStep = step;
-    // Update payment total when showing step 4
-    if (step === 4) {
+    // Update payment total when showing step 5
+    if (step === 5) {
         paymentTotalAmount.textContent = totalAmount.textContent;
     }
 }
 
+// Step validation functions
 function validateStep1() {
     const checkin = checkinInput.value;
     const checkout = checkoutInput.value;
@@ -88,6 +106,7 @@ function validateStep1() {
         checkoutInput.classList.add('error');
         isValid = false;
     } else if (new Date(checkout) <= new Date(checkin)) {
+        document.getElementById('checkout-error').textContent = 'Check-out date must be after check-in date';
         document.getElementById('checkout-error').classList.add('show');
         checkoutInput.classList.add('error');
         isValid = false;
@@ -128,7 +147,7 @@ function validateStep2() {
     return isValid;
 }
 
-function validateStep4() {
+function validateStep5() {
     const selectedMethod = paymentMethodInput.value;
     if (!selectedMethod) {
         alert('Please select a payment method');
@@ -137,37 +156,58 @@ function validateStep4() {
     return true;
 }
 
+// Calculate total including additional services
 function calculateTotal() {
     const checkin = checkinInput.value;
     const checkout = checkoutInput.value;
-    const roomType = document.getElementById('roomType').value;
+    const roomSelect = document.getElementById('roomNumber');
+    const selectedOption = roomSelect.options[roomSelect.selectedIndex];
     
-    if (!checkin || !checkout) return;
+    if (!checkin || !checkout || !selectedOption.value) return;
 
     const nights = Math.ceil((new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24));
+    const pricePerNight = selectedOption.dataset.price ? parseInt(selectedOption.dataset.price) : 0;
+    let total = nights * pricePerNight;
     
-    // 🟢 CORRECTED PRICES (same as admin dashboard)
-    const roomPrices = {
-        'standard': 1500,
-        'deluxe': 2500,
-        'suite': 4000,
-        'family': 3500
-    };
+    // Calculate additional services
+    const meals = mealsSelect.value;
+    const tours = toursSelect.value;
+    const pickup = pickupSelect.value;
     
-    const pricePerNight = roomPrices[roomType] || 2500;
-    const total = nights * pricePerNight;
+    // Meals pricing
+    if (meals === 'breakfast' || meals === 'lunch' || meals === 'dinner') {
+        total += 1000;
+    } else if (meals === 'all') {
+        total += 3000;
+    }
     
-    // Update display with currency symbol
+    // Tours pricing
+    if (tours === 'tour_a') {
+        total += 2000;
+    } else if (tours === 'tour_b') {
+        total += 2500;
+    } else if (tours === 'tour_c') {
+        total += 3000;
+    }
+    
+    // Pickup pricing
+    if (pickup === 'yes') {
+        total += 1500;
+    }
+    
+    // Update display
     summaryTotal.textContent = `₱${total.toLocaleString()}`;
     totalAmount.textContent = `₱${total.toLocaleString()}`;
+    summaryNights.textContent = nights;
     
-    // 🟢 Update hidden fields for form submission
+    // Update hidden fields
     document.getElementById('nightsHidden').value = nights;
     document.getElementById('totalAmountHidden').value = total;
     
-    console.log('Calculated total:', total, 'Nights:', nights); // Debug log
+    console.log('Calculated total:', total, 'Nights:', nights);
 }
 
+// Update summary with all booking details
 function updateSummary() {
     const checkin = checkinInput.value;
     const checkout = checkoutInput.value;
@@ -178,14 +218,16 @@ function updateSummary() {
     if (checkin) {
         summaryCheckin.textContent = new Date(checkin).toLocaleDateString('en-US', {
             month: 'short',
-            day: 'numeric'
+            day: 'numeric',
+            year: 'numeric'
         });
     }
     
     if (checkout) {
         summaryCheckout.textContent = new Date(checkout).toLocaleDateString('en-US', {
             month: 'short',
-            day: 'numeric'
+            day: 'numeric',
+            year: 'numeric'
         });
     }
     
@@ -200,7 +242,44 @@ function updateSummary() {
     summaryRoom.textContent = roomOptions[roomType] || 'Deluxe';
     summaryName.textContent = (firstName && lastName) ? `${firstName} ${lastName}` : '-';
     
+    // Update services summary
+    const mealsText = {
+        'no': 'No meals',
+        'breakfast': 'Breakfast only (+₱1,000)',
+        'lunch': 'Lunch only (+₱1,000)', 
+        'dinner': 'Dinner only (+₱1,000)',
+        'all': 'All meals (+₱3,000)'
+    };
+    const toursText = {
+        'no': 'No tours',
+        'tour_a': 'Tour A (+₱2,000)',
+        'tour_b': 'Tour B (+₱2,500)',
+        'tour_c': 'Tour C (+₱3,000)'
+    };
+    
+    summaryMeals.textContent = mealsText[mealsSelect.value] || 'No meals';
+    summaryTours.textContent = toursText[toursSelect.value] || 'No tours';
+    summaryPickup.textContent = pickupSelect.value === 'yes' ? 'Yes (+₱1,500)' : 'No';
+    
+    // Show/hide pickup time
+    if (pickupSelect.value === 'yes' && pickupTimeInput.value) {
+        summaryPickupTimeItem.style.display = 'flex';
+        summaryPickupTime.textContent = formatTime(pickupTimeInput.value);
+    } else {
+        summaryPickupTimeItem.style.display = 'none';
+    }
+    
     calculateTotal();
+}
+
+// Format time for display
+function formatTime(timeString) {
+    if (!timeString) return '-';
+    const [hours, minutes] = timeString.split(':');
+    const hour = parseInt(hours);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+    return `${displayHour}:${minutes} ${ampm}`;
 }
 
 // Payment method selection
@@ -212,6 +291,7 @@ paymentOptions.forEach(option => {
     });
 });
 
+// Step navigation event listeners
 nextStep1.addEventListener('click', () => {
     if (validateStep1()) {
         updateSummary();
@@ -227,13 +307,20 @@ nextStep2.addEventListener('click', () => {
 });
 
 nextStep3.addEventListener('click', () => {
+    updateSummary();
     showStep(4);
+});
+
+nextStep4.addEventListener('click', () => {
+    showStep(5);
 });
 
 backStep2.addEventListener('click', () => showStep(1));
 backStep3.addEventListener('click', () => showStep(2));
 backStep4.addEventListener('click', () => showStep(3));
+backStep5.addEventListener('click', () => showStep(4));
 
+// Date change handlers
 checkinInput.addEventListener('change', () => {
     if (checkinInput.value) {
         const nextDay = new Date(checkinInput.value);
@@ -243,36 +330,54 @@ checkinInput.addEventListener('change', () => {
             checkoutInput.value = '';
         }
     }
+    checkRoomAvailability();
     updateSummary();
 });
 
 checkoutInput.addEventListener('change', () => {
+    checkRoomAvailability();
     updateSummary();
 });
 
+// Room type change handler
 document.getElementById('roomType').addEventListener('change', () => {
     updateSummary();
 });
 
+// Others section event listeners
+pickupSelect.addEventListener('change', function() {
+    pickupTimeGroup.style.display = this.value === 'yes' ? 'block' : 'none';
+    updateSummary();
+});
+
+pickupTimeInput.addEventListener('change', updateSummary);
+mealsSelect.addEventListener('change', updateSummary);
+toursSelect.addEventListener('change', updateSummary);
+
+// Form submission
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (!validateStep2() || !validateStep4()) return;
+    if (!validateStep2() || !validateStep5()) return;
     
     const formData = new FormData(form);
     
-    // 🟢 Get values from hidden fields
+    // Get values from hidden fields
     const nightsValue = document.getElementById('nightsHidden').value;
     const totalAmountValue = document.getElementById('totalAmountHidden').value;
     
-    // 🟢 DEBUG: Check what values we're sending
+    // DEBUG: Check what values we're sending
     console.log('=== DEBUG FORM SUBMISSION ===');
     console.log('Nights value:', nightsValue);
     console.log('Total Amount value:', totalAmountValue);
     console.log('Checkin:', checkinInput.value);
     console.log('Checkout:', checkoutInput.value);
     console.log('Room Type:', document.getElementById('roomType').value);
+    console.log('Meals:', mealsSelect.value);
+    console.log('Tours:', toursSelect.value);
+    console.log('Pickup:', pickupSelect.value);
+    console.log('Pickup Time:', pickupTimeInput.value);
     
-    // 🟢 Also check if hidden fields exist
+    // Also check if hidden fields exist
     console.log('Nights hidden field exists:', !!document.getElementById('nightsHidden'));
     console.log('TotalAmount hidden field exists:', !!document.getElementById('totalAmountHidden'));
     console.log('=== END DEBUG ===');
@@ -284,12 +389,12 @@ form.addEventListener('submit', function(e) {
     const defaultState = confirmButton.querySelector(".state--default");
     const bookedState = confirmButton.querySelector(".state--sent");
 
-    // 🔹 Show "Booked" animation first
+    // Show "Booked" animation first
     confirmButton.disabled = true;
     defaultState.style.display = "none";
     bookedState.style.display = "flex";
 
-    // 🔹 Wait 1 second before actually saving to DB - CSP SAFE VERSION
+    // Wait 1 second before actually saving to DB - CSP SAFE VERSION
     setTimeout(function() {
         fetch("save_booking.php", {
             method: "POST",
@@ -318,6 +423,10 @@ form.addEventListener('submit', function(e) {
                         summaryGuests.textContent = "2";
                         summaryRoom.textContent = "Deluxe";
                         summaryName.textContent = "-";
+                        summaryMeals.textContent = "No meals";
+                        summaryTours.textContent = "No tours";
+                        summaryPickup.textContent = "No";
+                        summaryPickupTimeItem.style.display = "none";
                         summaryTotal.textContent = "₱0";
                         totalAmount.textContent = "₱0";
                         paymentMethodInput.value = "";
@@ -349,10 +458,7 @@ form.addEventListener('submit', function(e) {
     }, 1000); // small delay before processing
 });
 
-updateGuestCount();
-
 // Room availability functions
-// In your booking.js, update the checkRoomAvailability function:
 function checkRoomAvailability() {
     const checkin = document.getElementById('checkin').value;
     const checkout = document.getElementById('checkout').value;
@@ -424,66 +530,16 @@ function updateRoomSelection(availableRooms) {
         const selectedOption = this.options[this.selectedIndex];
         if (selectedOption.value) {
             roomTypeInput.value = selectedOption.dataset.roomType || '';
-            calculateTotal();
+            updateSummary();
         } else {
             roomTypeInput.value = '';
         }
     });
 }
 
-// Update calculateTotal to use actual room prices
-function calculateTotal() {
-    const checkin = checkinInput.value;
-    const checkout = checkoutInput.value;
-    const roomSelect = document.getElementById('roomNumber');
-    const selectedOption = roomSelect.options[roomSelect.selectedIndex];
-    
-    if (!checkin || !checkout || !selectedOption.value) return;
+// Initialize
+updateGuestCount();
 
-    const nights = Math.ceil((new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24));
-    const pricePerNight = selectedOption.dataset.price ? parseInt(selectedOption.dataset.price) : 0;
-    const total = nights * pricePerNight;
-    
-    // Update display
-    summaryTotal.textContent = `₱${total.toLocaleString()}`;
-    totalAmount.textContent = `₱${total.toLocaleString()}`;
-    summaryNights.textContent = nights;
-    
-    // Update hidden fields
-    document.getElementById('nightsHidden').value = nights;
-    document.getElementById('totalAmountHidden').value = total;
-}
-
-// Add event listeners for date changes
-checkinInput.addEventListener('change', function() {
-    if (checkinInput.value) {
-        const nextDay = new Date(checkinInput.value);
-        nextDay.setDate(nextDay.getDate() + 1);
-        checkoutInput.min = nextDay.toISOString().split('T')[0];
-        if (checkoutInput.value && new Date(checkoutInput.value) <= new Date(checkinInput.value)) {
-            checkoutInput.value = '';
-        }
-    }
-    checkRoomAvailability();
-    updateSummary();
-});
-
-checkoutInput.addEventListener('change', function() {
-    checkRoomAvailability();
-    updateSummary();
-});
-
-// Update guest count to trigger availability check
-function updateGuestCount() {
-    guestCount.textContent = guestCountValue + (guestCountValue === 1 ? ' Guest' : ' Guests');
-    guestsInput.value = guestCountValue;
-    decreaseGuests.disabled = guestCountValue <= 1;
-    increaseGuests.disabled = guestCountValue >= 10;
-    
-    // Check availability when guest count changes
-    checkRoomAvailability();
-}
-
-// In your booking.js, add these lines:
+// Add event listeners for date changes to trigger availability check
 checkinInput.addEventListener('change', checkRoomAvailability);
 checkoutInput.addEventListener('change', checkRoomAvailability);

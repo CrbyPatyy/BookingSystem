@@ -39,15 +39,18 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 });
 document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 
-/*Navigation scroll effect
+// Smooth Navbar Scroll Effect
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    
+    // Add 'scrolled' class when user scrolls past 100px
+    if (scrollPosition > 100) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});*/
+}, { passive: true });
 
 // Enhanced Mobile Menu with Better Interactions
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
